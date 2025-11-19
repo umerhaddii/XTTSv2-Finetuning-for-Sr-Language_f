@@ -51,7 +51,7 @@ def extend_tokenizer(args):
 
     # train new tokenizer
     traindf = pd.read_csv(args.metadata_path, sep="|")
-    texts = traindf.text.to_list()
+    texts = traindf.iloc[:, 1].to_list()
 
     new_tokenizer = Tokenizer(BPE())
     new_tokenizer.pre_tokenizer = Whitespace()
