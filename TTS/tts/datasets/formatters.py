@@ -654,3 +654,30 @@ def bel_tts_formatter(root_path, meta_file, **kwargs):  # pylint: disable=unused
             text = cols[1]
             items.append({"text": text, "audio_file": wav_file, "speaker_name": speaker_name, "root_path": root_path})
     return items
+
+def serbian_formatter(root_path, meta_file, **kwargs):
+    """Custom formatter for Serbian dataset"""
+    txt_file = os.path.join(root_path, meta_file)
+    items = []
+    
+    with open(txt_file, "r", encoding="utf-8") as f:
+        next(f)  # skip header
+        for line in f:
+            cols = line.strip().split("|")
+            if len(cols) < 3:
+                continue
+            audio_file = cols[0]
+            text = cols[1]
+            speaker_name = cols[2]
+            
+            if not os.path.isabs(audio_file):
+                audio_file = os.path.join(root_path, audio_file)
+            
+            if os.path.exists(audio_file):
+                items.append({
+                    "text": text,
+                    "audio_file": audio_file,
+                    "speaker_name": speaker_name,
+                    "root_path": root_path
+                })
+    return items

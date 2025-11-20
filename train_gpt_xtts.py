@@ -67,7 +67,7 @@ def train_gpt(metadatas, num_epochs, batch_size, grad_acumm, output_path, max_au
         print(train_csv, eval_csv, language)
 
         config_dataset = BaseDatasetConfig(
-            formatter="coqui",
+            formatter="serbian_formatter",
             dataset_name="ft_dataset",
             path=os.path.dirname(train_csv),
             meta_file_train=os.path.basename(train_csv),
