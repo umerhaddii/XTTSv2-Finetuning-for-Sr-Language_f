@@ -656,8 +656,10 @@ def bel_tts_formatter(root_path, meta_file, **kwargs):  # pylint: disable=unused
     return items
 
 def serbian_formatter(root_path, meta_file, **kwargs):
-    """Custom formatter for Serbian dataset"""
-    txt_file = os.path.join(root_path, meta_file)
+    """Custom formatter for Serbian dataset - Kaggle hardcoded"""
+    # Force Kaggle input path
+    kaggle_root = "/kaggle/input/serbian-xtts"
+    txt_file = os.path.join(kaggle_root, meta_file)
     items = []
     
     with open(txt_file, "r", encoding="utf-8") as f:
@@ -666,18 +668,17 @@ def serbian_formatter(root_path, meta_file, **kwargs):
             cols = line.strip().split("|")
             if len(cols) < 3:
                 continue
-            audio_file = cols[0]
+            audio_file = os.path.join(kaggle_root, cols[0])
             text = cols[1]
             speaker_name = cols[2]
-            
-            if not os.path.isabs(audio_file):
-                audio_file = os.path.join(root_path, audio_file)
             
             if os.path.exists(audio_file):
                 items.append({
                     "text": text,
                     "audio_file": audio_file,
                     "speaker_name": speaker_name,
-                    "root_path": root_path
+                    "root_path": kaggle_root
                 })
+    
+    print(f" | > Loaded {len(items)} samples from {txt_file}")
     return items
