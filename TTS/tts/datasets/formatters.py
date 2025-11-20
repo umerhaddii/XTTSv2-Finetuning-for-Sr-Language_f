@@ -657,13 +657,12 @@ def bel_tts_formatter(root_path, meta_file, **kwargs):  # pylint: disable=unused
 
 def serbian_formatter(root_path, meta_file, **kwargs):
     """Custom formatter for Serbian dataset - Kaggle hardcoded"""
-    # Force Kaggle input path
     kaggle_root = "/kaggle/input/serbian-xtts"
     txt_file = os.path.join(kaggle_root, meta_file)
     items = []
     
     with open(txt_file, "r", encoding="utf-8") as f:
-        next(f)  # skip header
+        # NO next(f) - file has no header
         for line in f:
             cols = line.strip().split("|")
             if len(cols) < 3:
