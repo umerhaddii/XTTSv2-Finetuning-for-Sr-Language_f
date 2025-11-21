@@ -15,14 +15,14 @@ def train_gpt():
         train_csv = "/kaggle/input/serbian-xtts/metadata_train.csv"
         eval_csv = "/kaggle/input/serbian-xtts/metadata_eval.csv"
         language = "sr"
-        num_epochs = 10
+        num_epochs = 20
         batch_size = 4
         grad_acumm = 2
-        max_audio_length = 330750
-        max_text_length = 400
+        max_audio_length = 441000
+        max_text_length = 250
         lr = 5e-6
         weight_decay = 1e-2
-        save_step = 500
+        save_step = 250
 
         print("=" * 50)
         print("XTTS Serbian Fine-tuning Started")
