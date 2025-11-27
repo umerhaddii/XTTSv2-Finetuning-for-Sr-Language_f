@@ -657,7 +657,7 @@ def bel_tts_formatter(root_path, meta_file, **kwargs):  # pylint: disable=unused
 
 def serbian_formatter(root_path, meta_file, **kwargs):
     """Custom formatter for Serbian dataset"""
-    kaggle_root = "/kaggle/input/serbian-xtts"
+    kaggle_root = "/kaggle/input/twofb-novel"
     txt_file = os.path.join(kaggle_root, meta_file)
     items = []
     
