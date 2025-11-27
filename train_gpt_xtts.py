@@ -12,17 +12,17 @@ def train_gpt():
     try:
         # Hardcoded parameters
         output_path = "/kaggle/working/checkpoints/"
-        train_csv = "/kaggle/input/serbian-xtts/metadata_train.csv"
-        eval_csv = "/kaggle/input/serbian-xtts/metadata_eval.csv"
+        train_csv = "/kaggle/input/twofb-novel/metadata_train.csv"
+        eval_csv = "/kaggle/input/twofb-novel/metadata_eval.csv"
         language = "sr"
-        num_epochs = 5
-        batch_size = 2
-        grad_acumm = 4
+        num_epochs = 20
+        batch_size = 4
+        grad_acumm = 2
         max_audio_length = 441000
         max_text_length = 250
-        lr = 1e-5
+        lr = 5e-6
         weight_decay = 1e-2
-        save_step = 100
+        save_step = 250
 
         print("=" * 50)
         print("XTTS Serbian Fine-tuning Started")
