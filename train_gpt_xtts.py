@@ -15,12 +15,12 @@ def train_gpt():
         train_csv = "/kaggle/input/twofb-novel/metadata_train.csv"
         eval_csv = "/kaggle/input/twofb-novel/metadata_eval.csv"
         language = "sr"
-        num_epochs = 20
+        num_epochs = 10
         batch_size = 1
         grad_acumm = 8
         max_audio_length = 441000
         max_text_length = 250
-        lr = 5e-6
+        lr = 1e-5
         weight_decay = 1e-2
         save_step = 250
 
@@ -141,6 +141,9 @@ def train_gpt():
             config.save_step = save_step
             config.save_n_checkpoints = 1
             config.save_checkpoints = True
+            config.save_best_after = 0
+            config.keep_all_best = False
+            config.keep_after = 0
             config.print_eval = False
             config.optimizer = "AdamW"
             config.optimizer_wd_only_on_weights = OPTIMIZER_WD_ONLY_ON_WEIGHTS
