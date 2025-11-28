@@ -16,8 +16,8 @@ def train_gpt():
         eval_csv = "/kaggle/input/twofb-novel/metadata_eval.csv"
         language = "sr"
         num_epochs = 20
-        batch_size = 2
-        grad_acumm = 4
+        batch_size = 1
+        grad_acumm = 8
         max_audio_length = 441000
         max_text_length = 250
         lr = 5e-6
