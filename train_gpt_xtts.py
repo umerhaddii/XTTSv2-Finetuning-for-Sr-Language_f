@@ -20,7 +20,7 @@ def train_gpt():
         grad_acumm = 8
         max_audio_length = 441000
         max_text_length = 250
-        lr = 1e-5
+        lr = 5e-6
         weight_decay = 1e-2
         save_step = 250
 
@@ -138,7 +138,8 @@ def train_gpt():
             config.print_step = 50
             config.plot_step = 100
             config.log_model_step = 100
-            config.save_step = save_step
+            # config.save_step = save_step
+            config.save_step = 999999  # Disable regular checkpoints
             config.save_n_checkpoints = 1
             config.save_checkpoints = True
             config.save_best_after = 0
