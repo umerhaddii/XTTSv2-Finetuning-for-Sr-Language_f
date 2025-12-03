@@ -15,14 +15,19 @@ def train_gpt():
         train_csv = "/kaggle/input/serbian-all-novels/metadata_train.csv"
         eval_csv = "/kaggle/input/serbian-all-novels/metadata_eval.csv"
         language = "sr"
-        num_epochs = 5
+        num_epochs = 15
         batch_size = 1
         grad_acumm = 8
-        max_audio_length = 441000
-        max_text_length = 250
-        lr = 2e-6
-        weight_decay = 1e-2
-        save_step = 99999
+        max_audio_length = 255995
+        max_text_length = 200
+        lr = 5e-6
+        weight_decay = 0.01
+        save_step = 1000
+        eval_step = 1000
+
+        # Memory optimization
+        num_loader_workers = 2
+        use_grad_checkpoint = True
 
         print("=" * 50)
         print("XTTS Serbian Fine-tuning Started")
@@ -37,7 +42,7 @@ def train_gpt():
 
         # Training Parameters
         OPTIMIZER_WD_ONLY_ON_WEIGHTS = True
-        START_WITH_EVAL = False
+        START_WITH_EVAL = True
         BATCH_SIZE = batch_size
         GRAD_ACUMM_STEPS = grad_acumm
 
