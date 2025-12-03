@@ -51,7 +51,7 @@ def train_gpt():
             config_dataset = BaseDatasetConfig(
                 formatter="serbian_formatter",
                 dataset_name="serbian_voice",
-                path="/kaggle/input/serbian-audio-data",
+                path="/kaggle/input/cleaned-sr-audio-data",
                 meta_file_train="metadata_train.csv",
                 meta_file_val="metadata_eval.csv",
                 language=language,
