@@ -12,8 +12,8 @@ def train_gpt():
     try:
         # Hardcoded parameters
         output_path = "/kaggle/working/checkpoints/"
-        train_csv = "/kaggle/input/serbian-audio-data/metadata_train.csv"
-        eval_csv = "/kaggle/input/serbian-audio-data/metadata_eval.csv"
+        train_csv = "/kaggle/input/cleaned-sr-audio-data/metadata_train.csv"
+        eval_csv = "/kaggle/input/cleaned-sr-audio-data/metadata_eval.csv"
         language = "sr"
         num_epochs = 15
         batch_size = 1
