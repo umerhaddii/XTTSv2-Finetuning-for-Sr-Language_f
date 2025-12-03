@@ -12,8 +12,8 @@ def train_gpt():
     try:
         # Hardcoded parameters
         output_path = "/kaggle/working/checkpoints/"
-        train_csv = "/kaggle/input/twofb-novel/metadata_train.csv"
-        eval_csv = "/kaggle/input/twofb-novel/metadata_eval.csv"
+        train_csv = "/kaggle/input/serbian-all-novels/metadata_train.csv"
+        eval_csv = "/kaggle/input/serbian-all-novels/metadata_eval.csv"
         language = "sr"
         num_epochs = 5
         batch_size = 1
@@ -46,7 +46,7 @@ def train_gpt():
             config_dataset = BaseDatasetConfig(
                 formatter="serbian_formatter",
                 dataset_name="serbian_voice",
-                path="/kaggle/input/twofb-novel",
+                path="/kaggle/input/serbian-all-novels",
                 meta_file_train="metadata_train.csv",
                 meta_file_val="metadata_eval.csv",
                 language=language,
