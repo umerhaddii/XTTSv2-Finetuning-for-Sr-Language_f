@@ -18,15 +18,17 @@ def train_gpt():
         num_epochs = 15
         batch_size = 1
         grad_acumm = 8
-        max_audio_length = 255995
+        max_audio_length = 220000
         max_text_length = 200
-        lr = 5e-6
-        weight_decay = 0.01
-        save_step = 1000
+        lr = 2e-6
+        weight_decay = 0.05
+        save_step = 99999
         eval_step = 1000
+        save_best_after = 0
+        save_n_checkpoints = 1
 
         # Memory optimization
-        num_loader_workers = 2
+        num_loader_workers = 4
         use_grad_checkpoint = True
 
         print("=" * 50)
