@@ -161,7 +161,7 @@ def train_gpt():
             config.optimizer_params = {"betas": [0.9, 0.96], "eps": 1e-8, "weight_decay": weight_decay}
             config.lr = lr
             config.lr_scheduler = "MultiStepLR"
-            config.lr_scheduler_params = {"milestones": [50000 * 18, 150000 * 18, 300000 * 18], "gamma": 0.5, "last_epoch": -1}
+            config.lr_scheduler_params = {"milestones": [4000, 8000, 12000], "gamma": 0.5, "last_epoch": -1}
             config.test_sentences = []
             
             print("✓ Model configuration loaded")
