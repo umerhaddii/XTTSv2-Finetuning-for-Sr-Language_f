@@ -15,17 +15,17 @@ def train_gpt():
         train_csv = "/kaggle/input/cleaned-sr-audio-data/metadata_train.csv"
         eval_csv = "/kaggle/input/cleaned-sr-audio-data/metadata_eval.csv"
         language = "sr"
-        num_epochs = 12
+        num_epochs = 10
         batch_size = 2
         grad_acumm = 16
         max_audio_length = 300000
         max_text_length = 150
-        lr = 5e-6
-        weight_decay = 0.03
-        save_step = 4000
-        eval_step = 1000
-        save_best_after = 2000
-        save_n_checkpoints = 3
+        lr = 4e-6
+        weight_decay = 0.02
+        save_step = 2000
+        eval_step = 800
+        save_best_after = 1000
+        save_n_checkpoints = 4
         keep_all_best = False
         save_checkpoints = True
         
@@ -161,7 +161,7 @@ def train_gpt():
             config.optimizer_params = {"betas": [0.9, 0.96], "eps": 1e-8, "weight_decay": weight_decay}
             config.lr = lr
             config.lr_scheduler = "MultiStepLR"
-            config.lr_scheduler_params = {"milestones": [4000, 8000, 12000], "gamma": 0.5, "last_epoch": -1}
+            config.lr_scheduler_params = {"milestones": [3000, 6000, 9000], "gamma": 0.4, "last_epoch": -1}
             config.test_sentences = []
             
             print("✓ Model configuration loaded")
