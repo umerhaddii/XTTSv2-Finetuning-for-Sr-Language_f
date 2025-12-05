@@ -15,17 +15,17 @@ def train_gpt():
         train_csv = "/kaggle/input/cleaned-sr-audio-data/metadata_train.csv"
         eval_csv = "/kaggle/input/cleaned-sr-audio-data/metadata_eval.csv"
         language = "sr"
-        num_epochs = 6
+        num_epochs = 10
         batch_size = 2
         grad_acumm = 16
         max_audio_length = 300000
         max_text_length = 150
-        lr = 4e-6
+        lr = 3e-6
         weight_decay = 0.02
         save_step = 2000
         eval_step = 800
         save_best_after = 1000
-        save_n_checkpoints = 4
+        save_n_checkpoints = 3
         keep_all_best = False
         save_checkpoints = True
         
@@ -33,6 +33,7 @@ def train_gpt():
         # Memory optimization
         num_loader_workers = 2
         use_grad_checkpoint = True
+        early_stopping_patience = 2
 
         print("=" * 50)
         print("XTTS Serbian Fine-tuning Started")
@@ -143,14 +144,14 @@ def train_gpt():
             config.logger_uri = LOGGER_URI
             config.audio = audio_config
             config.batch_size = BATCH_SIZE
-            config.num_loader_workers = 8
+            config.num_loader_workers = num_loader_workers
             config.eval_split_max_size = 256
             config.print_step = 50
             config.plot_step = 100
             config.log_model_step = 100
             # config.save_step = save_step
-            config.save_step = 999999  # Disable regular checkpoints
-            config.save_n_checkpoints = 1
+            config.save_step = save_step
+            config.eval_step = eval_step  
             config.save_checkpoints = True
             config.save_best_after = 0
             config.keep_all_best = False
@@ -163,7 +164,9 @@ def train_gpt():
             config.lr_scheduler = "MultiStepLR"
             config.lr_scheduler_params = {"milestones": [3000, 6000, 9000], "gamma": 0.4, "last_epoch": -1}
             config.test_sentences = []
-            
+
+            # --- ADD EARLY STOPPING HERE ---
+            config.early_stopping_patience = early_stopping_patience   # stop if avg_loss_mel_ce worsens for 2 consecutive evals
             print("✓ Model configuration loaded")
         except Exception as e:
             print(f"✗ Model configuration failed: {str(e)}")
