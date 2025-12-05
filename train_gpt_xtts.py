@@ -15,7 +15,7 @@ def train_gpt():
         train_csv = "/kaggle/input/cleaned-sr-audio-data/metadata_train.csv"
         eval_csv = "/kaggle/input/cleaned-sr-audio-data/metadata_eval.csv"
         language = "sr"
-        num_epochs = 4
+        num_epochs = 12
         batch_size = 2
         grad_acumm = 16
         max_audio_length = 300000
