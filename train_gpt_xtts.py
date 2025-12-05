@@ -152,9 +152,9 @@ def train_gpt():
             # config.save_step = save_step
             config.save_step = save_step
             config.eval_step = eval_step  
-            config.save_checkpoints = True
-            config.save_best_after = 0
-            config.keep_all_best = False
+            config.save_checkpoints = save_checkpoints
+            config.save_best_after = save_best_after
+            config.keep_all_best = keep_all_best
             config.keep_after = 0
             config.print_eval = False
             config.optimizer = "AdamW"
@@ -164,6 +164,8 @@ def train_gpt():
             config.lr_scheduler = "MultiStepLR"
             config.lr_scheduler_params = {"milestones": [3000, 6000, 9000], "gamma": 0.4, "last_epoch": -1}
             config.test_sentences = []
+            config.grad_accum_steps = grad_acumm
+            config.use_grad_checkpoint = use_grad_checkpoint
 
             # --- ADD EARLY STOPPING HERE ---
             config.early_stopping_patience = early_stopping_patience   # stop if avg_loss_mel_ce worsens for 2 consecutive evals
