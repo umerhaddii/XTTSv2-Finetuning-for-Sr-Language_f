@@ -24,7 +24,7 @@ def train_gpt():
         weight_decay = 0.02
         save_step = 2000
         eval_step = 800
-        save_best_after = 1000
+        save_best_after = 0
         save_n_checkpoints = 3
         keep_all_best = False
         save_checkpoints = True
@@ -33,7 +33,7 @@ def train_gpt():
         # Memory optimization
         num_loader_workers = 2
         use_grad_checkpoint = True
-        early_stopping_patience = 2
+        
 
         print("=" * 50)
         print("XTTS Serbian Fine-tuning Started")
@@ -146,15 +146,15 @@ def train_gpt():
             config.batch_size = BATCH_SIZE
             config.num_loader_workers = num_loader_workers
             config.eval_split_max_size = 256
-            config.print_step = 50
+            config.print_step = 100
             config.plot_step = 100
             config.log_model_step = 100
             # config.save_step = save_step
-            config.save_step = save_step
-            config.eval_step = eval_step  
-            config.save_checkpoints = save_checkpoints
-            config.save_best_after = save_best_after
-            config.keep_all_best = keep_all_best
+            config.save_step = 999999
+            config.save_n_checkpoints = 1
+            config.save_checkpoints = True
+            config.save_best_after = 0
+            config.keep_all_best = False
             config.keep_after = 0
             config.print_eval = False
             config.optimizer = "AdamW"
@@ -164,8 +164,7 @@ def train_gpt():
             config.lr_scheduler = "MultiStepLR"
             config.lr_scheduler_params = {"milestones": [3000, 6000, 9000], "gamma": 0.4, "last_epoch": -1}
             config.test_sentences = []
-            config.grad_accum_steps = grad_acumm
-            config.use_grad_checkpoint = use_grad_checkpoint
+            
 
             # --- ADD EARLY STOPPING HERE ---
             config.early_stopping_patience = early_stopping_patience   # stop if avg_loss_mel_ce worsens for 2 consecutive evals
