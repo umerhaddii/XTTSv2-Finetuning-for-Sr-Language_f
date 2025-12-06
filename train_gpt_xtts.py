@@ -166,8 +166,7 @@ def train_gpt():
             config.test_sentences = []
             
 
-            # --- ADD EARLY STOPPING HERE ---
-            config.early_stopping_patience = early_stopping_patience   # stop if avg_loss_mel_ce worsens for 2 consecutive evals
+           
             print("✓ Model configuration loaded")
         except Exception as e:
             print(f"✗ Model configuration failed: {str(e)}")
